@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--引入外部的properties文件  -->
+	<properties resource="db.properties">
+	</properties> 
+	
+	<!--取别名  -->
+	<typeAliases>
+		<!--第一种配置别名的方式,类比较少的时候 可以采取这种配置方式  -->
+		<!-- <typeAlias type="com.briup.bean.Student" alias="student"/> -->
+
+		<!--第二种配置别名的方式,类比较多的时候 可以采取这种配置方式  -->
+		<!-- 给com.briup.bean这个包底下所有的类取别名 默认别名是类名首字母小写 -->
+		<package name="com.briup.estore.bean"/>
+	</typeAliases>
+
+	<environments default="development">
+		<!-- 环境 -->
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<!-- 数据源 连接数据库的时候需要的信息 -->
+			<dataSource type="POOLED">
+				<!--第一种配置方式 mac -->
+				<!-- <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/ahlg" />
+				<property name="username" value="root" />
+				<property name="password" value="briup123" /> -->
+				<!--第一种配置方式 window -->
+				<!-- <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/ahlg?serverTimezone=Asia/Chongqing&amp;useUnicode=true&amp;characterEncoding=utf8" />
+				<property name="username" value="root" />
+				<property name="password" value="briup123" /> -->
+				<!-- 第二种配置方式 --> 
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" /> 
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 映射文件的路径 -->
+	<mappers>
+		<mapper resource="com/briup/estore/dao/CategoryMapper.xml"/>
+		<mapper resource="com/briup/estore/dao/BookMapper.xml"/>
+		<mapper resource="com/briup/estore/dao/CustomerMapper.xml"/>
+		<mapper resource="com/briup/estore/dao/ShopAddressMapper.xml"/>
+		<mapper resource="com/briup/estore/dao/OrderFormMapper.xml"/>
+		<mapper resource="com/briup/estore/dao/OrderLineMapper.xml"/>
+		
+	</mappers>
+</configuration>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace中是映射文件所对应的映射接口的全限定名 -->
+<mapper namespace="com.briup.estore.dao.OrderFormMapper">
+
+	<!-- 插入一个订单 -->
+	<insert id="insertOrder" parameterType="OrderForm" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into es_orderform
+		(id,cost,orderDate,shopAddress_id,customer_id)
+		values(#{id},#{cost},#{orderdate},#{shopAddress.id},#{customer.id})
+	</insert>
+	
+	<!-- 根据 顾客id查询订单信息 -->
+	<select id="selectOrderByCustId" parameterType="int" resultType="OrderForm">
+		select * from es_orderform
+		where customer_id=#{id}
+	</select>
+</mapper>

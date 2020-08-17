@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace中是映射文件所对应的映射接口的全限定名 -->
+<mapper namespace="com.briup.estore.dao.OrderLineMapper">
+
+	<!-- 插入一个订单项 -->
+	<insert id="insertLine" parameterType="OrderLine">
+		insert into es_orderline
+		(id,num,cost,book_id,orderForm_id)
+		value(#{id},#{num},#{cost},#{book.id},#{order.id})
+	</insert>
+</mapper>

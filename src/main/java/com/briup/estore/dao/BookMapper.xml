@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+  "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件的namespace和映射接口的全限定名保持一致 -->
+<!-- 映射文件的id和映射接口中的方法名保持一致 -->
+<mapper namespace="com.briup.estore.dao.BookMapper">
+	<select id="selectBookByClick" resultType="book">
+		select * from es_book
+		order by click desc
+		limit 3;
+	</select>
+	
+	
+	<select id="selectAllBook" resultType="book">
+		select * from es_book;
+	</select>
+	
+	<!-- 根据id查询书籍信息 -->
+	<select id="selectBookById" parameterType="int" resultType="Book">
+		select * from es_book
+		where 
+		id=#{id};
+	</select>
+	<!-- 更新书籍的信息 -->
+	<update id="updateBook" parameterType="Book">
+		update es_book
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="price!=null">
+				price=#{price},
+			</if>
+			<if test="author!=null">
+				author=#{author},
+			</if>
+			<if test="publisher!=null">
+				publisher=#{publisher},
+			</if>
+			<if test="pubDate!=null">
+				pubDate=#{pubDate},
+			</if>
+			<if test="description!=null">
+				description=#{description},
+			</if>
+			<if test="image!=null">
+				image=#{image},
+			</if>
+			<if test="click>0">
+				click=#{click},
+			</if>
+		</set>
+		where id=#{id};
+	</update>
+	
+	<!-- 根据栏目的id查询书籍 -->
+	<select id="selectBookByCateId" parameterType="int" resultType="Book">
+		select * from es_book
+		where 
+			category_id=#{cateId}
+	</select>
+	
+	<!-- 根据栏目id查询点击量最搞得三门书 -->
+	<select id="selectBookByCateIdAndClick" parameterType="int" resultType="Book">
+		select * from es_book
+		where category_id=#{cateId}
+		order by click desc
+		limit 3;
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

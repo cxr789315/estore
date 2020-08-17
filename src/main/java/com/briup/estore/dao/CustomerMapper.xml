@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+  "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件的namespace和映射接口的全限定名保持一致 -->
+<!-- 映射文件的id和映射接口中的方法名保持一致 -->
+<mapper namespace="com.briup.estore.dao.CustomerMapper">
+	<insert id="insertCustomer" parameterType="Customer">
+		insert into es_customer(id,name,password,zipCode,telephone,email)
+		values(#{id},#{name},#{password},#{zipCode},#{telephone},#{email});
+	</insert>
+	
+	<!-- 根据用户名查询Customer用来注册 -->
+	<select id="selectCustomerByName" parameterType="String" resultType="Customer">
+		select * from es_customer
+		where name=#{name};
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
